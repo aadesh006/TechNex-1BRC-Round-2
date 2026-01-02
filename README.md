@@ -1,18 +1,57 @@
 # TechNex-1BRC-Round-2
 
-## NOTE: This repo doesn't contain the original data.csv file as it's too big to be uploaded on Github
+A scalable data processing and machine learning pipeline built using **Apache Spark**, designed to handle large-scale agricultural datasets efficiently. This project focuses on data cleaning, statistical analysis, anomaly detection, and predictive modeling using distributed computing — with optional GPU acceleration.
 
-# This script:
-##   - Checks if CUDA-enabled GPUs are available.
-##   - Configures Spark for 6 cores and ~10GB total (5g each for driver and executor).
-##   - If GPUs are available and your environment supports RAPIDS, extra GPU configurations are applied.
-##   - Ingests and filters a massive CSV file using a defined schema.
-##   - Performs anomaly filtering (keeps rows where soil_moisture is within ±3 standard deviations).
-##   - Sorts data by multiple columns and applies further filtering.
-##   - Computes descriptive statistics (mean, median, stddev, Q1, Q3) for carbon_percent and nitrogen_percent.
-##   - Interpolates missing carbon_percent values (if null, sets value to soil_moisture * 0.05).
-##   - Builds and tests a Linear Regression model (using Spark ML) to predict carbon_percent from soil_moisture and temperature.
-##   - Generates a bar chart (in a separate thread) of the nutrient statistics.
-##   - Reports total runtime.
-  
-## Note: To truly leverage GPUs make sure your Spark cluster is configured for GPU acceleration (e.g., with RAPIDS Accelerator) and that the necessary drivers and discovery scripts are available.
+---
+
+## Project Overview
+
+This repository contains a Spark-based data processing pipeline that:
+
+- Efficiently handles **large CSV datasets**
+- Performs **data cleaning, filtering, and statistical analysis**
+- Builds a **machine learning model** using Spark ML
+- Supports **GPU acceleration** (via RAPIDS, if available)
+- Generates **visual insights** through plotting
+
+> ⚠️ **Note:**  
+> The original `data.csv` file is **not included** in this repository due to its large size.
+
+---
+
+## ⚙️ Features
+
+### ✅ System & Environment Setup
+- Detects availability of **CUDA-enabled GPUs**
+- Configures Spark to use:
+  - **6 CPU cores**
+  - **~10 GB total memory** (5 GB each for driver and executor)
+- Applies **GPU-specific Spark configurations** if RAPIDS support is detected
+
+---
+
+### Data Processing Pipeline
+- Loads a **large CSV file** using an explicitly defined schema  
+- Filters anomalous values:
+  - Keeps rows where `soil_moisture` is within **±3 standard deviations**
+- Sorts data using multiple relevant columns  
+- Applies additional logical filtering  
+
+---
+
+### Statistical Analysis
+Computes descriptive statistics for:
+- `carbon_percent`
+- `nitrogen_percent`
+
+Statistics include:
+- Mean  
+- Median  
+- Standard Deviation  
+- Q1 (25th percentile)  
+- Q3 (75th percentile)  
+
+---
+
+### Data Imputation
+- Interpolates missing values:
