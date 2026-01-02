@@ -14,14 +14,14 @@ This repository contains a Spark-based data processing pipeline that:
 - Supports **GPU acceleration** (via RAPIDS, if available)
 - Generates **visual insights** through plotting
 
-> ⚠️ **Note:**  
+> **Note:**  
 > The original `data.csv` file is **not included** in this repository due to its large size.
 
 ---
 
-## ⚙️ Features
+## Features
 
-### ✅ System & Environment Setup
+### System & Environment Setup
 - Detects availability of **CUDA-enabled GPUs**
 - Configures Spark to use:
   - **6 CPU cores**
@@ -55,3 +55,4 @@ Statistics include:
 
 ### Data Imputation
 - Interpolates missing values:
+
